@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1303223017_Soal1</title>
+    <link type="text/css" rel="stylesheet" href="style1.css">
+</head>
+<body onload="">
+    <form>
+        <div class="form-group">
+            <label>Nama</label>
+            <input type="text" class="form-control" id="nama" readonly>
+        </div>
+        <div class="form-group">
+            <label>NIM</label>
+            <input type="text" class="form-control" id="nim" readonly>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+		const name = prompt('Masukkan nama kamu')
+        const nim = prompt('Masukkan nim kamu')
+        if (name!="") {
+            document.getElementById('nama').setAttribute('value', name);
+        }
+        if (nim!="") {
+            document.getElementById('nim').setAttribute('value', nim);
+        }
+    </script>
+
+</body>
+</html>
