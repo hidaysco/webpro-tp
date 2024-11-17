@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>1303223017</title>
+    <style>
+      body{
+        background-color: lightgray;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      }
+      .form{
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+      <h1 class="mb-4"><b>Form Sapa Menggunakan AJAX</b></h1>
+      <div class="form mb-4">
+        <input type="text" name="name" id="name" class="form-control mb-4" placeholder="Masukkan Nama">
+        <button type="submit" class="btn btn-primary" onclick="send()">Kirim</button>
+      </div>
+      <div class="text-success" id="success" style="font-weight: bold;"></div>
+      <div class="text-danger" id="error" style="font-weight: bold;"></div>
+    <script>
+      const send = ()=>{
+        const xhttp = new XMLHttpRequest();
+        let name = document.getElementById('name').value.trim();
+        let error = document.getElementById('error');
+        let success = document.getElementById('success');
+  
+        error.innerHTML = '';
+        success.innerHTML = '';
+  
+        xhttp.onreadystatechange = function(){
+          console.log(this.status);
+          if (this.readyState==4 && this.status ===200) {  
+            if (this.responseText.includes('Halo')) {
+              success.innerHTML = this.responseText;
+            }else{
+              error.innerHTML = this.responseText;
+            }
+          }
+        }
+        xhttp.open('POST', 'server.php', true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.send(`name=${encodeURIComponent(name)}`)
+      }
+    </script>
+  </body>
+</html>
